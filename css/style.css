@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+*{box-sizing:border-box;}
+html,body{margin:0;}
+.cf,.clear,.clearfix{clear:both;}
+div{float:left;display:block;width:100%;}
+
+
+#one,#two,#three{
+    float:left;
+    border:none;
+    width:33%;
+    height:100vh;
+    padding: 50px;
+    color:#000;
+    font-family:"Arial", sans-serif;
+}
+#one{
+    background:#eee;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    -o-appearance:none;
+    appearance:none;
+    outline:none;
+    resize:none;
+    font-family:"Arial", sans-serif;
+}
+#one p{
+    margin: 0 0 15px 0;
+}
+#two{
+    background:#ccc;
+}
+
+.video-transcript span[role="button"]{
+    color:#29719E;
+    cursor:pointer;
+    font-size:13px;
+}
+.transcript-container{
+    font-size:14px;
+    color:#333;
+    margin: 20px 0 0 0;
+}
+#code{
+    width:100%;
+    display:block;
+    float:left;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}

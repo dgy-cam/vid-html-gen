@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>DGY Video Transcript Snippet Builder</title>
+
+        <link rel="stylesheet" href="css/style.css">
+
+        <script src="jquery.3.4.1.min.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(function(){
+                $(document).on("click", '.video-transcript span[role="button"]', function() {
+                    var el = $(this);
+                    el.toggleClass('open');
+                    var con = el.siblings('.transcript-container');
+                    con.slideToggle(300);
+                });
+
+                var tagsToReplace = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;'
+                };
+                function replaceTag(tag) {
+                    return tagsToReplace[tag] || tag;
+                }
+                function safe_tags_replace(str) {
+                    return str.replace(/[&<>]/g, replaceTag);
+                }
+                function textToClipboard (text) {
+                    var dummy = document.createElement("textarea");
+                    document.body.appendChild(dummy);
+                    dummy.value = text;
+                    dummy.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(dummy);
+                }
+                $('#one').on('change input propertychange', function(event){
+                    var el = $(this);
+                    var two = $('#two');
+                    var three = $('#code');
+
+                    var pre = '<div class="video-transcript"><span role="button" aria-label="Click for text video transcript">Transcript <i class="icon-down-angle"></i></span><div class="transcript-container" aria-label="Video transcript text" style="display:none;"><p>';
+                    var post = '</p></div></div>';
+
+                    var str = el.val();
+                    str = str.replace(/(?:\r\n|\r|\n)/g, '</p><p>');
+
+                    two.html(pre + str + post);
+
+                    var output = pre + str + post;
+                    three.html(safe_tags_replace(output));
+
+                    textToClipboard(pre + str + post);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <textarea id="one" placeholder="Paste here.."></textarea>
+        <div id="two"></div>
+        <div id="three">
+            <pre><code id="code">
+            </code></pre>
+        </div>
+    </body>
+</html>
